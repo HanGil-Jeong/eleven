@@ -61,7 +61,7 @@
             measurementId: "G-78K4S6BJVR"
         };
 
-        
+
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
@@ -98,12 +98,12 @@
 
             await addDoc(collection(db, "profile"), doc);
             alert('등록완료!');
-            window.location.href = '상세페이지로 이동';
+            window.location.href = 'personal.html';
 
         });
 
         $('#cancelbtn').click(async function () {
-            window.location.href = '메인페이지로 이동';
+            window.location.href = 'mainpage.html';
         });
     </script>
 </head>
