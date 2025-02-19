@@ -19,6 +19,45 @@
             font-style: normal;
         }
 
+        .mytitle {
+            height: 150px;
+            background-color: #112D4E;
+            font-family: 'NanumSquareExtraBold';
+            color: #F9F7F7;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-position: center;
+            background-size: cover;
+        }
+        .nav {
+            background-color: #3F72AF;
+        }
+        .nav-link {
+            color: #DBE2EF;
+            
+        }
+        a {
+            font-family: 'NanumSquare';
+        }
+        .nav-link:hover {
+            color: #F9F7F7;
+            font-weight: bold;
+        }
+        .nav-link:visited{
+            color: #DBE2EF;
+        }
+        textarea {
+            resize: none;
+        }
+        .custom {
+            /* 입력 필드 크기 통일 */
+            width: 250px;
+            margin-bottom: 5px;
+        }
+
         .main {
             color: white;
 
@@ -54,13 +93,13 @@
 
         // Firebase 구성 정보 설정
         const firebaseConfig = {
-            apiKey: "AIzaSyCBVCrcQqFlXIbMA7mQpOrDOm5TW6l--QI",
-            authDomain: "sparta-21bc3.firebaseapp.com",
-            projectId: "sparta-21bc3",
-            storageBucket: "sparta-21bc3.firebasestorage.app",
-            messagingSenderId: "918564537713",
-            appId: "1:918564537713:web:b865e4a24f33fcd10c22d0",
-            measurementId: "G-BKD6WBMMQ9"
+            apiKey: "AIzaSyD1HMXSfrlIYIT-e_REsB-LwsT8bxnWqxE",
+            authDomain: "sparta-2346a.firebaseapp.com",
+            projectId: "sparta-2346a",
+            storageBucket: "sparta-2346a.firebasestorage.app",
+            messagingSenderId: "446679956846",
+            appId: "1:446679956846:web:01f695a403202625a5957f",
+            measurementId: "G-78K4S6BJVR"
         };
 
         // Firebase 인스턴스 초기화
@@ -68,7 +107,7 @@
         const db = getFirestore(app);
 
 
-        let docs = await getDocs(collection(db, "eleven"));
+        let docs = await getDocs(collection(db, "profile"));
         docs.forEach((doc) => {
             let row = doc.data();
 
@@ -93,6 +132,13 @@
 </head>
 
 <body>
+    <div class="mytitle">
+        <h1>ELEVEN</h1>
+    </div>
+    <nav class="nav justify-content-center">
+        <a class="nav-link" href="mainpage.html">Home</a>
+        <a class="nav-link" href="guestbook.html">방명록</a>
+    </nav>
     <div class="mycards">
         <div id="card" class="row row-cols-1 row-cols-md-4 g-4">
 
@@ -100,7 +146,7 @@
     </div>
 
     <div class="mybtn">
-        <button class="btn btn-primary" type="submit">등록하기</button>
+        <a class="btn btn-primary" href="insertProfile.html">등록하기</a>
     </div>
 
 </body>
