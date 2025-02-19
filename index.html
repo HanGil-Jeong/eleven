@@ -57,21 +57,23 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         const firebaseConfig = {
-            apiKey: "AIzaSyCQTeNI8W1jAq6S3KVhyAxQ1YAVm2H77zQ",
-            authDomain: "eleven-23001.firebaseapp.com",
-            projectId: "eleven-23001",
-            storageBucket: "eleven-23001.firebasestorage.app",
-            messagingSenderId: "599100239018",
-            appId: "1:599100239018:web:8f46ece3d58fccc91af4d3",
-            measurementId: "G-3K2RRBBN1R"
+            apiKey: "AIzaSyD1HMXSfrlIYIT-e_REsB-LwsT8bxnWqxE",
+            authDomain: "sparta-2346a.firebaseapp.com",
+            projectId: "sparta-2346a",
+            storageBucket: "sparta-2346a.firebasestorage.app",
+            messagingSenderId: "446679956846",
+            appId: "1:446679956846:web:01f695a403202625a5957f",
+            measurementId: "G-78K4S6BJVR"
         };
 
         const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
     </script>
 
     <script src="script.js"></script>
