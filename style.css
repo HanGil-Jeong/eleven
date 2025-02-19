@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    height: 100vh
+}
+
+.container {
+    width: 700px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.form-container {
+    display: flex;
+    gap: 20px;
+}
+
+.photo-section {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photo-placeholder {
+    width: 200px;
+    height: 200px;
+    background-color: #d3d3d3;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.photo-section button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.photo-section button:hover {
+    background-color: #0056b3;
+}
+
+.form-fields {
+    width: 70%;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+label {
+    width: 80px;
+    font-weight: bold;
+}
+
+input, textarea {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+textarea {
+    resize: none;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.button-group button {
+    padding: 5px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.cancel-btn {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.edit-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+.button-group button:hover {
+    opacity: 0.9;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    height: 100vh; /* 추가: 화면 전체 높이 */
+    display: flex; /* 추가: Flexbox로 정렬 */
+    justify-content: center; /* 추가: 가로 중앙 정렬 */
+    align-items: center; /* 추가: 세로 중앙 정렬 */
+}
+
+.container {
+    width: 700px; /* 너비는 조금 넓게 */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+    
