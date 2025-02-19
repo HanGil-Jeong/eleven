@@ -32,26 +32,33 @@
             background-position: center;
             background-size: cover;
         }
+
         .nav {
             background-color: #3F72AF;
         }
+
         .nav-link {
             color: #DBE2EF;
-            
+
         }
+
         a {
             font-family: 'NanumSquare';
         }
+
         .nav-link:hover {
             color: #F9F7F7;
             font-weight: bold;
         }
-        .nav-link:visited{
+
+        .nav-link:visited {
             color: #DBE2EF;
         }
+
         textarea {
             resize: none;
         }
+
         .custom {
             /* 입력 필드 크기 통일 */
             width: 250px;
@@ -107,6 +114,11 @@
         const db = getFirestore(app);
 
 
+        function goToPersonal(name) {
+            console.log("hello"); // 디버깅용 로그
+            window.location.href = `personal.html?name=${encodeURIComponent(name)}`;
+        }
+
         let docs = await getDocs(collection(db, "profile"));
         docs.forEach((doc) => {
             let row = doc.data();
@@ -127,6 +139,11 @@
             </div>
             `
             $('#card').append(temp_html)
+        });
+
+        $(document).on("click", ".card", function () {
+            let name = $(this).find(".card-title").text();
+            goToPersonal(name);
         });
     </script>
 </head>
