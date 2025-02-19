@@ -15,11 +15,57 @@
             font-family: "Gowun Dodum", serif;
         }
 
+        .mytitle {
+            height: 150px;
+            background-color: #112D4E;
+            font-family: 'NanumSquareExtraBold';
+            color: #F9F7F7;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .nav {
+            background-color: #3F72AF;
+        }
+
+        .nav-link {
+            color: #DBE2EF;
+
+        }
+
+        a {
+            font-family: 'NanumSquare';
+        }
+
+        .nav-link:hover {
+            color: #F9F7F7;
+            font-weight: bold;
+        }
+
+        .nav-link:visited {
+            color: #DBE2EF;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .custom {
+            /* 입력 필드 크기 통일 */
+            width: 250px;
+            margin-bottom: 5px;
+        }
+
         .post {
             background-color: #F9F4E8;
             width: 600px;
             padding: 20px;
-            margin: auto;
+            margin: 20px auto;
 
             border-top: solid 5px #e4cc8f;
             border-bottom: solid 5px #e4cc8f;
@@ -132,6 +178,14 @@
 </head>
 
 <body>
+
+    <div class="mytitle">
+        <h1>ELEVEN</h1>
+    </div>
+    <nav class="nav justify-content-center">
+        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="#">방명록</a>
+    </nav>
 
     <div class="post">
         <h3>방명록 작성</h3>
