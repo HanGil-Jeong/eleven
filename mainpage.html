@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mainpage</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+        * {
+            font-family: "Gowun Dodum", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .main {
+            color: white;
+
+            background-image: url('https://occ-0-1123-1217.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABeIfo7VL_VDyKnljV66IkR-4XLb6xpZqhpLSo3JUtbivnEW4s60PD27muH1mdaANM_8rGpgbm6L2oDgA_iELHZLZ2IQjG5lvp5d2.jpg?r=e6e.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        .mycards {
+            width: 1200px;
+
+            margin: 20px auto 20px auto;
+            position: relative;
+        }
+
+        .mybtn {
+            text-align: center;
+            margin-top: 20px;
+            padding-left: 1100px;
+        }
+    </style>
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyCBVCrcQqFlXIbMA7mQpOrDOm5TW6l--QI",
+            authDomain: "sparta-21bc3.firebaseapp.com",
+            projectId: "sparta-21bc3",
+            storageBucket: "sparta-21bc3.firebasestorage.app",
+            messagingSenderId: "918564537713",
+            appId: "1:918564537713:web:b865e4a24f33fcd10c22d0",
+            measurementId: "G-BKD6WBMMQ9"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+
+        let docs = await getDocs(collection(db, "eleven"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+
+            let image = row['image'];
+            let name = row['name'];
+            let mbti = row['mbti'];
+
+            let temp_html = `
+            <div class="col">
+                <div class="card">
+                    <img src="${image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${name}</h5>
+                        <p class="card-text">${mbti}</p>
+                    </div>
+                </div>
+            </div>
+            `
+            $('#card').append(temp_html)
+        });
+    </script>
+</head>
+
+<body>
+    <div class="mycards">
+        <div id="card" class="row row-cols-1 row-cols-md-4 g-4">
+
+        </div>
+    </div>
+
+    <div class="mybtn">
+        <button class="btn btn-primary" type="submit">등록하기</button>
+    </div>
+
+</body>
+
+</html>
