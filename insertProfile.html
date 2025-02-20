@@ -102,12 +102,7 @@
         document.getElementById('image').addEventListener('input', function (event) {
             let data = $('#image').val();
             let preview = document.getElementById('showimg');
-
-            if (data.startsWith('data:image')) {
-                preview.src = data;
-            } else {
-                preview.src = '';
-            }
+            preview.src = data;
         });
 
         $('#registerbtn').click(async function () {
