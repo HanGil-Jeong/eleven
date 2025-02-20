@@ -105,26 +105,19 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        $("#mypostingbox").click(async function () {
-            
-            let image = $('#image').val();
-            let name = $('#name').val();
-            let age = $('#age').val();
-            let mbti = $('#mbti').val();
-            let oneWord = $('#oneWord').val();
-            let hobby = $('#hobby').val();
-            let selfIntro = $('#selfIntro').val();
-            let doc = { 
-                'image': image,
-                'name': name,
-                'age': age,
-                'mbti': mbti,
-                'oneWord': oneWord,
-                'hobby': hobby,
-                'selfIntro': selfIntro
-            };
-            await addDoc(collection(db, "personal"), doc);
-        })
+        let docs = await getDocs(collection(db, "insert"));
+        docs.forEach((doc) => {
+
+            let image = row['image'];
+            let name = row['name'];
+            let age = row['age'];
+            let mbti = row['mbti'];
+            let oneWord = row['oneWord'];
+            let hobby = row['hobby'];
+            let selfIntro = row['selfIntro'];
+
+        });
+
     </script>
 
 
