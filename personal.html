@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>personal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+
+        * {
+            font-family: "Gowun Dodum", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+
+        .mypostingbox {
+            width: 500px;
+            margin: 20px auto 20px auto;
+
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        .mybtn {
+            margin-left: 360px;
+        }
+
+        .mybtn2 {
+            margin-left: 1142px;
+        }
+
+        .mytitle {
+            height: 150px;
+            background-color: #112D4E;
+            font-family: 'NanumSquareExtraBold';
+            color: #F9F7F7;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .nav {
+            background-color: #3F72AF;
+        }
+
+        .nav-link {
+            color: #DBE2EF;
+
+        }
+
+        a {
+            font-family: 'NanumSquare';
+        }
+
+        .nav-link:hover {
+            color: #F9F7F7;
+            font-weight: bold;
+        }
+
+        .nav-link:visited {
+            color: #DBE2EF;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .custom {
+            /* 입력 필드 크기 통일 */
+            width: 250px;
+            margin-bottom: 5px;
+        }
+    </style>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_lUaz_KcRIb4peWJ0RJRr5qDs-jN5tiA",
+            authDomain: "team-eleven-dbb06.firebaseapp.com",
+            projectId: "team-eleven-dbb06",
+            storageBucket: "team-eleven-dbb06.firebasestorage.app",
+            messagingSenderId: "538010019281",
+            appId: "1:538010019281:web:33a38236813cb93edc6cf0",
+            measurementId: "G-XJL27CBNGL"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlName = urlParams.get('name');
+
+        let docs = await getDocs(collection(db, "profile"));
+        docs.forEach((doc) => {
+            let row = doc.data()
+            let name = row['name'];
+
+            if (name === urlName) {
+                let image = row['image'];
+                let age = row['age'];
+                let mbti = row['mbti'];
+                let oneWord = row['oneWord'];
+                let hobby = row['hobby'];
+                let selfIntro = row['selfIntro'];
+
+                let temp_html = `        
+                <img src="${image}" class="img-thumbnail" alt="...">
+        <h5 id="name">${name}</h5>
+        <h5 id="age">${age}</h5>
+        <h5 id="mbti">${mbti}</h5>
+        <h5 id="onwWord">${onwWord}</h5>
+        <h5 id="hobby">${hobby}</h5>
+        <h5 id="selfIntro">${selfIntro}</h5>
+`
+                $('#postingbox').append(temp_html)
+            }
+        });
+
+    </script>
+
+
+</head>
+
+<body>
+    <div class="mytitle">
+        <h1>ELEVEN</h1>
+    </div>
+    <nav class="nav justify-content-center">
+        <a class="nav-link" href="mainpage.html">Home</a>
+        <a class="nav-link" href="gestbook.html">방명록</a>
+    </nav>
+    <div id="postingbox" class="mypostingbox">
+
+        <div class="mybtn">
+            <button type="button" id="fixbtn" class="btn btn-danger" onclick="location.href='index.html' ">수정하기</button>
+        </div>
+    </div>
+    <div class="mybtn2">
+        <button type="button" id="indexbtn" class="btn btn-danger" onclick="location.href='mainpage.html' ">목록</button>
+    </div>
+    </div>
+</body>
+
+</html>
+
