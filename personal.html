@@ -27,7 +27,8 @@
         }
 
         .mybtn {
-            margin-left: 360px;
+            margin-left: 1130px;
+            margin-bottom: 2px;
         }
 
         .mybtn2 {
@@ -116,12 +117,12 @@
 
                 let temp_html = `        
                 <img src="${image}" class="img-thumbnail" alt="...">
-        <h5 id="name">${name}</h5>
-        <h5 id="age">${age}</h5>
-        <h5 id="mbti">${mbti}</h5>
-        <h5 id="oneWord">${oneWord}</h5>
-        <h5 id="hobby">${hobby}</h5>
-        <h5 id="selfIntro">${selfIntro}</h5>
+        <h5 id="name">이름: ${name}</h5>
+        <h5 id="age">나이: ${age}</h5>
+        <h5 id="mbti">mbti: ${mbti}</h5>
+        <h5 id="oneWord">한마디: ${oneWord}</h5>
+        <h5 id="hobby">취미: ${hobby}</h5>
+        <h5 id="selfIntro">자기소개: ${selfIntro}</h5>
 `
                 $('#postingbox').append(temp_html)
             }
@@ -138,13 +139,12 @@
     </div>
     <nav class="nav justify-content-center">
         <a class="nav-link" href="mainpage.html">Home</a>
-        <a class="nav-link" href="gestbook.html">방명록</a>
+        <a class="nav-link" href="guestbook.html">방명록</a>
     </nav>
     <div id="postingbox" class="mypostingbox">
-
-        <div class="mybtn">
-            <button type="button" id="fixbtn" class="btn btn-danger" onclick="location.href='index.html' ">수정하기</button>
-        </div>
+    </div>
+    <div class="mybtn">
+        <button type="button" id="fixbtn" class="btn btn-danger" onclick="location.href='index.html' ">수정하기</button>
     </div>
     <div class="mybtn2">
         <button type="button" id="indexbtn" class="btn btn-danger" onclick="location.href='mainpage.html' ">목록</button>
