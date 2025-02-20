@@ -98,6 +98,12 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        function goToIndex(name) {
+            window.location.href = `index.html?name=${encodeURIComponent(name)}`;
+        }
+
+
+
         const urlParams = new URLSearchParams(window.location.search);
         const urlName = urlParams.get('name');
 
@@ -127,6 +133,11 @@
             }
         });
 
+
+        $(document).on("click", "#fixbtn", function () {
+            goToIndex(urlName);
+        });
+        
     </script>
 
 
@@ -143,7 +154,7 @@
     <div id="postingbox" class="mypostingbox">
     </div>
     <div class="mybtn">
-        <button type="button" id="fixbtn" class="btn btn-danger" onclick="location.href='index.html' ">수정하기</button>
+        <button type="button" id="fixbtn" class="btn btn-danger">수정하기</button>
         <button type="button" id="indexbtn" class="btn btn-danger" onclick="location.href='mainpage.html' ">목록</button>
     </div>
 
