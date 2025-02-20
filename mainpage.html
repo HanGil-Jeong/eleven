@@ -121,6 +121,16 @@
         const db = getFirestore(app);
 
 
+        window.addEventListener('load', function () {
+            fetch("header.html")
+                .then(response => {
+                    return response.text()
+                })
+                .then(data => {
+                    document.querySelector("header").innerHTML = data;
+                });
+        });
+
         function goToPersonal(name) {
             console.log("hello"); // 디버깅용 로그
             window.location.href = `personal.html?name=${encodeURIComponent(name)}`;
@@ -156,13 +166,8 @@
 </head>
 
 <body>
-    <div class="mytitle">
-        <h1>ELEVEN</h1>
-    </div>
-    <nav class="nav justify-content-center">
-        <a class="nav-link" href="mainpage.html">Home</a>
-        <a class="nav-link" href="guestbook.html">방명록</a>
-    </nav>
+    <header id="header">
+    </header>
     <div class="mycards">
         <div id="card" class="row row-cols-1 row-cols-md-4 g-4">
 
