@@ -62,6 +62,10 @@
             width: 250px;
             height: 320px;
         }
+        #cancelbtn:hover {
+            background-color: #3F72AF;
+            border-color: #3F72AF;
+        }
     </style>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -98,12 +102,7 @@
         document.getElementById('image').addEventListener('input', function (event) {
             let data = $('#image').val();
             let preview = document.getElementById('showimg');
-
-            if (data.startsWith('data:image')) {
-                preview.src = data;
-            } else {
-                preview.src = '';
-            }
+            preview.src = data;
         });
 
         $('#registerbtn').click(async function () {
@@ -163,7 +162,7 @@
                     </div>
                 </div>
                 <button type="button" id="registerbtn" class="btn btn-dark mt-3"
-                    style="font-family: 'Gowun Dodum';">등록하기</button>
+                    style="font-family: 'Gowun Dodum'; background-color: #112D4E;">등록하기</button>
                 <button type="button" id="cancelbtn" class="btn btn-outline-dark mt-3"
                     style="font-family: 'Gowun Dodum';">취소</button>
             </form>
