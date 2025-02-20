@@ -39,9 +39,12 @@
         }
 
         a {
-            font-family: 'NanumSquare';
+            font-family: "Gowun Dodum";
+            text-decoration: none;
         }
-
+        a:visited {
+            color: white;
+        }
         .nav-link:hover {
             color: #F9F7F7;
             font-weight: bold;
@@ -166,8 +169,7 @@
 
             let stemp_html = `
             <div class="namebox">${name}</div>
-            <div class="textbox">${oneWord}
-                </div>
+            <div class="textbox">${oneWord}</div>
             `
             $('#card').append(stemp_html);
 
@@ -179,7 +181,7 @@
 <body>
 
     <div class="mytitle">
-        <h1>ELEVEN</h1>
+        <a href="mainpage.html"><h1>ELEVEN</h1></a>
     </div>
     <nav class="nav justify-content-center">
         <a class="nav-link" href="mainpage.html">Home</a>
