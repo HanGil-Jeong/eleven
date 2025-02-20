@@ -5,77 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>11조 홈페이지</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        window.addEventListener('load', function () {
+            fetch("header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector("header").innerHTML = data;
+                });
+        });
+    </script>
 </head>
 <body>
+    <header id="header"></header>
     <div class="container">
-    <header class="banner">
-        <h1>11조 홈페이지</h1>
-        <div class="nav">
-        <a href="#">Home</a>
-        <a href="#">방명록</a>
+        <div class="form-container">
+            <div class="photo-section">
+                <div class="photo-placeholder" id="photoPlaceholder"></div>
+                <input type="text" id="imageLink" placeholder="이미지 링크를 입력하세요">
+                <button type="button" id="addImageBtn">사진 추가</button>
+            </div>
+            <div class="form-fields">
+                <form>
+                    <div class="form-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">나이</label>
+                        <input type="number" id="age" name="age" placeholder="나이를 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="mbti">MBTI</label>
+                        <input type="text" id="mbti" name="mbti" placeholder="MBTI 입력">
+                    </div>
+                    <div class="form-group">
+                        <label for="phrase">한마디</label>
+                        <input type="text" id="phrase" name="phrase" placeholder="한마디 입력">
+                    </div>
+                    <div class="form-group">
+                        <label for="hobby">취미</label>
+                        <input type="text" id="hobby" name="hobby" placeholder="취미 입력">
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">자기소개</label>
+                        <textarea id="bio" name="bio" rows="3" placeholder="자기소개 입력"></textarea>
+                    </div>
+                </form>
+            </div>
         </div>
-    </header>
-    <div class="form-container">
-        <div class="photo-section">
-            <div class="photo-placeholder"></div>
-            <button type="button">사진 추가</button>
-        </div>
-        <div class="form-fields">
-            <form>
-                <div class="form-group">
-                    <label for="name">이름</label>
-                    <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
-                </div>
-                <div class="form-group">
-                    <label for="age">나이</label>
-                    <input type="number" id="age" name="age" placeholder="나이를 입력하세요">
-                </div>
-                <div class="form-group">
-                    <label for="mbti">MBTI</label>
-                    <input type="text" id="mbti" name="mbti" placeholder="MBTI 입력">
-                </div>
-                <div class="form-group">
-                    <label for="phrase">한마디</label>
-                    <input type="text" id="phrase" name="phrase" placeholder="한마디 입력">
-                </div>
-                <div class="form-group">
-                    <label for="hobby">취미</label>
-                    <input type="text" id="hobby" name="hobby" placeholder="취미 입력">
-                </div>
-                <div class="form-group">
-                    <label for="bio">자기소개</label>
-                    <textarea id="bio" name="bio" rows="3" placeholder="자기소개 입력"></textarea>
-                </div>
-            </form>
-        </div>
-    </div>
         <div class="button-group">
             <button type="button" class="cancel-btn">취소</button>
             <button type="submit" class="edit-btn">수정</button>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
 
         const firebaseConfig = {
-            apiKey: "AIzaSyD1HMXSfrlIYIT-e_REsB-LwsT8bxnWqxE",
-            authDomain: "sparta-2346a.firebaseapp.com",
-            projectId: "sparta-2346a",
-            storageBucket: "sparta-2346a.firebasestorage.app",
-            messagingSenderId: "446679956846",
-            appId: "1:446679956846:web:01f695a403202625a5957f",
-            measurementId: "G-78K4S6BJVR"
+            apiKey: "AIzaSyCQTeNI8W1jAq6S3KVhyAxQ1YAVm2H77zQ",
+            authDomain: "eleven-23001.firebaseapp.com",
+            projectId: "eleven-23001",
+            storageBucket: "eleven-23001.firebasestorage.app",
+            messagingSenderId: "599100239018",
+            appId: "1:599100239018:web:8f46ece3d58fccc91af4d3",
+            measurementId: "G-3K2RRBBN1R"
         };
 
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+        const analytics = getAnalytics(app);
     </script>
-
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,70 +1,50 @@
 $(document).ready(function() {
-    $('.photo-section button').on('click', function() {
-        if ($('#photoInput').length === 0) {
-            $('body').append('<input type="file" id="photoInput" accept="image/*" style="display:none">');
-        }   
-        $('#photoInput').click();
-    });
+    // '사진 추가' 버튼 클릭 시
+    $('#addImageBtn').on('click', function() {
+        var imageLink = $('#imageLink').val(); // 이미지 링크 입력 필드에서 값 가져오기
 
-    $('body').on('change', '#photoInput', function(event) {
-        var file = event.target.files[0];
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('.photo-placeholder').css({
-                    'background-image': 'url(' + e.target.result + ')',
-                    'background-size': 'cover',
-                    'background-position': 'center'
-                });
-            };
-        reader.readAsDataURL(file);
+        if (imageLink) {
+            // 입력된 이미지 링크로 .photo-placeholder의 배경 이미지 설정
+            $('#photoPlaceholder').css({
+                'background-image': 'url(' + imageLink + ')',
+                'background-size': 'cover',
+                'background-position': 'center'
+            });
+        } else {
+            alert("이미지 링크를 입력해주세요.");
         }
     });
 
+    // 취소 버튼 클릭 시 초기화
     $('.cancel-btn').on('click', function() {
         $('form')[0].reset();
-        $('.photo-placeholder').css('background-image', 'none');
-        $('#photoInput').val('');
+        $('#photoPlaceholder').css('background-image', 'none');
+        $('#imageLink').val(''); // 이미지 링크 필드도 초기화
     });
 
+    // 수정 버튼 클릭 시 데이터 저장
     $('.edit-btn').on('click', function(e) {
         e.preventDefault();
 
-        var name   = $('#name').val();
-        var age    = $('#age').val();
-        var mbti   = $('#mbti').val();
-        var oneWord = $('#oneWord').val();
-        var hobby  = $('#hobby').val();
-        var selfIntro    = $('#selfIntro').val();
+        var name = $('#name').val();
+        var age = $('#age').val();
+        var mbti = $('#mbti').val();
+        var oneWord = $('#phrase').val(); // 'phrase'로 ID 수정
+        var hobby = $('#hobby').val();
+        var selfIntro = $('#bio').val(); // 'bio'로 ID 수정
+        var imageLink = $('#imageLink').val(); // 이미지 링크
 
         if (!name || !age) {
             alert("이름과 나이는 필수 입력 항목입니다.");
             return;
         }
 
-        var photoFile = $('#photoInput')[0] ? $('#photoInput')[0].files[0] : null;
-
-        if (photoFile) {
-            var photoRef = storage.ref('photos/' + Date.now() + '_' + photoFile.name);
-            var uploadTask = photoRef.put(photoFile);
-
-            uploadTask.on('state_changed',
-                function(error) {
-                    console.error("사진 업로드 에러: ", error);
-                    alert("사진 업로드에 실패했습니다.");
-                },
-                function() {
-                    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                        saveData(name, age, mbti, oneWord, hobby, selfIntro, downloadURL);
-                    });
-                }
-            );
-        } else {
-            saveData(name, age, mbti, oneWord, hobby, selfIntro, null);
-        }
+        // 데이터 저장 호출
+        saveData(name, age, mbti, oneWord, hobby, selfIntro, imageLink);
     });
 
-    function saveData(name, age, mbti, oneWord, hobby, selfIntro, image) {
+    // 데이터 저장 함수
+    function saveData(name, age, mbti, oneWord, hobby, selfIntro, imageLink) {
         db.collection("users").add({
             name: name,
             age: Number(age),
@@ -72,15 +52,17 @@ $(document).ready(function() {
             oneWord: oneWord,
             hobby: hobby,
             selfIntro: selfIntro,
-            image: image,
+            image: imageLink, // 입력된 이미지 링크
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         })
         .then(function(docRef) {
             alert("데이터가 성공적으로 저장되었습니다!");
             $('form')[0].reset();
-            $('.photo-placeholder').css('background-image', 'none');
-            $('#photoInput').val('');
-            window.location.href = "main.html";
+            $('#photoPlaceholder').css('background-image', 'none');
+            $('#imageLink').val(''); // 이미지 링크 입력 필드 초기화
+
+            // 저장 성공 후 personal.html로 이동
+            window.location.href = `personal.html?name=${encodeURIComponent(name)}`;
         })
         .catch(function(error) {
             console.error("데이터 저장 실패: ", error);

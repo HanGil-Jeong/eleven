@@ -1,21 +1,16 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    height: 100vh
+    font-family: Arial, sans-serif;
 }
 
 .container {
-    width: 700px;
+    width: 100%;
+    max-width: 700px; /* 최대 너비 설정 */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     box-sizing: border-box;
-    min-height: 100vh;
 }
 
 h1 {
@@ -128,22 +123,3 @@ textarea {
 .button-group button:hover {
     opacity: 0.9;
 }
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
-    margin: 0;
-    height: 100vh; /* 추가: 화면 전체 높이 */
-    display: flex; /* 추가: Flexbox로 정렬 */
-    justify-content: center; /* 추가: 가로 중앙 정렬 */
-    align-items: center; /* 추가: 세로 중앙 정렬 */
-}
-
-.container {
-    width: 700px; /* 너비는 조금 넓게 */
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    box-sizing: border-box;
-}
-    
