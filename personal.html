@@ -9,35 +9,16 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
         * {
-            font-family: "Gowun Dodum", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-        .gowun-dodum-regular {
             font-family: "Gowun Dodum", serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        .mypostingbox {
-            width: 500px;
-            margin: 20px auto 20px auto;
-
-            border: 1px solid black;
-            padding: 20px;
-        }
-
-        .mybtn {
-            text-align: center;
         }
 
         .mytitle {
             height: 150px;
             background-color: #112D4E;
-            font-family: 'gowun-dodum';
+            font-family: "Gowun Dodum";
             color: #F9F7F7;
 
             display: flex;
@@ -58,7 +39,13 @@
         }
 
         a {
-            font-family: 'gowun-dodum';
+            color: #F9F7F7;
+            font-family: "Gowun Dodum";
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: #F9F7F7;
         }
 
         .nav-link:hover {
@@ -78,6 +65,19 @@
             /* 입력 필드 크기 통일 */
             width: 250px;
             margin-bottom: 5px;
+        }
+
+        .mypostingbox {
+            width: 500px;
+            margin: 20px auto 20px auto;
+
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        .mybtn {
+            text-align: center;
+            margin-bottom: 10px;
         }
     </style>
     <script type="module">
@@ -137,7 +137,7 @@
         $(document).on("click", "#fixbtn", function () {
             goToIndex(urlName);
         });
-        
+
     </script>
 
 
@@ -145,7 +145,9 @@
 
 <body>
     <div class="mytitle">
-        <h1>ELEVEN</h1>
+        <a href="mainpage.html">
+            <h1>ELEVEN</h1>
+        </a>
     </div>
     <nav class="nav justify-content-center">
         <a class="nav-link" href="mainpage.html">Home</a>
@@ -162,4 +164,3 @@
 </body>
 
 </html>
-
