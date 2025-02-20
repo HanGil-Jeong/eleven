@@ -11,7 +11,7 @@
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
     <style>
         #intro {
-            width: 650px;
+            width: 700px;
             margin: 30px auto 30px auto;
             border: 2px solid black;
             border-radius: 2em;
@@ -39,9 +39,15 @@
         }
 
         .custom {
-            width: 500px;
             /* 입력 필드 크기 통일 */
+            width: 300px;
             margin-bottom: 5px;
+            margin-left: 15px;
+        }
+        #showimg{
+            border: 1px solid black;
+            width: 250px;
+            height: 320px;
         }
 
     </style>
@@ -74,6 +80,18 @@
                 .then(data => {
                     document.querySelector("header").innerHTML = data;
                 });
+        });
+
+        //실시간 이미지
+        document.getElementById('image').addEventListener('input', function(event){
+            let data = $('#image').val();
+            let preview = document.getElementById('showimg');
+
+            if(data.startsWith('data:image')){
+                preview.src = data;
+            }else{
+                preview.src = '';
+            }
         });
 
         $('#registerbtn').click(async function () {
@@ -118,7 +136,10 @@
         </div>
         <div style="display: flex; justify-content: center;">
             <form>
-                <div>
+                <div style="display: flex; justify-content: center;">
+                    <div class="column" class="preimg" style="display: flex;">
+                        <img id="showimg">
+                    </div>
                     <div>
                         <input type="text" class="form-control custom" id="image" placeholder="이미지">
                         <input type="text" class="form-control custom" id="name" placeholder="이름">
@@ -126,7 +147,7 @@
                         <input type="text" class="form-control custom" id="mbti" placeholder="MBTI">
                         <input type="text" class="form-control custom" id="oneWord" placeholder="한마디">
                         <input type="text" class="form-control custom" id="hobby" placeholder="취미">
-                        <textarea class="form-control custom" id="selfIntro" placeholder="자기소개"></textarea>
+                        <textarea class="form-control custom" id="selfIntro" placeholder="자기소개"></textarea>                       
                     </div>
                 </div>
                 <button type="button" id="registerbtn" class="btn btn-dark mt-3" style="font-family: 'NanumSquare';">등록하기</button>
