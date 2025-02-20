@@ -10,6 +10,15 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+        .gowun-dodum-regular {
+            font-family: "Gowun Dodum", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+
         #intro {
             width: 700px;
             margin: 30px auto 30px auto;
@@ -20,21 +29,23 @@
         }
 
         h3 {
-            font-family: 'NanumSquareBold';
+            font-family: "Gowun Dodum";
         }
 
         .mybtn {
             padding-top: 20px;
         }
+
         a {
-            font-family: 'NanumSquare';
+            font-family: "Gowun Dodum";
         }
+
         input {
-            font-family: 'NanumSquare';
+            font-family: "Gowun Dodum";
         }
 
         textarea {
-            font-family: 'NanumSquare';
+            font-family: "Gowun Dodum";
             resize: none;
         }
 
@@ -43,13 +54,14 @@
             width: 300px;
             margin-bottom: 5px;
             margin-left: 15px;
+            font-family: "Gowun Dodum";
         }
-        #showimg{
+
+        #showimg {
             border: 1px solid black;
             width: 250px;
             height: 320px;
         }
-
     </style>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -83,13 +95,13 @@
         });
 
         //실시간 이미지
-        document.getElementById('image').addEventListener('input', function(event){
+        document.getElementById('image').addEventListener('input', function (event) {
             let data = $('#image').val();
             let preview = document.getElementById('showimg');
 
-            if(data.startsWith('data:image')){
+            if (data.startsWith('data:image')) {
                 preview.src = data;
-            }else{
+            } else {
                 preview.src = '';
             }
         });
@@ -147,12 +159,15 @@
                         <input type="text" class="form-control custom" id="mbti" placeholder="MBTI">
                         <input type="text" class="form-control custom" id="oneWord" placeholder="한마디">
                         <input type="text" class="form-control custom" id="hobby" placeholder="취미">
-                        <textarea class="form-control custom" id="selfIntro" placeholder="자기소개"></textarea>                       
+                        <textarea class="form-control custom" id="selfIntro" placeholder="자기소개"></textarea>
                     </div>
                 </div>
-                <button type="button" id="registerbtn" class="btn btn-dark mt-3" style="font-family: 'NanumSquare';">등록하기</button>
-                <button type="button" id="cancelbtn" class="btn btn-outline-dark mt-3" style="font-family: 'NanumSquare';">취소</button>
+                <button type="button" id="registerbtn" class="btn btn-dark mt-3"
+                    style="font-family: 'Gowun Dodum';">등록하기</button>
+                <button type="button" id="cancelbtn" class="btn btn-outline-dark mt-3"
+                    style="font-family: 'Gowun Dodum';">취소</button>
             </form>
         </div>
 </body>
+
 </html>
