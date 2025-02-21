@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,14 +15,119 @@
                 });
         });
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs, updateDoc, doc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_lUaz_KcRIb4peWJ0RJRr5qDs-jN5tiA",
+            authDomain: "team-eleven-dbb06.firebaseapp.com",
+            projectId: "team-eleven-dbb06",
+            storageBucket: "team-eleven-dbb06.firebasestorage.app",
+            messagingSenderId: "538010019281",
+            appId: "1:538010019281:web:33a38236813cb93edc6cf0",
+            measurementId: "G-XJL27CBNGL"
+        };
+
+        // Firebase 앱 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 페이지 로드 시, URL에서 name 파라미터 추출하여 데이터 로드
+        window.addEventListener('load', async function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nameParam = urlParams.get('name');
+            if (nameParam) {
+                loadProfileData(nameParam);
+            }
+        });
+
+        // Firestore에서 프로필 데이터를 불러오는 함수
+        async function loadProfileData(name) {
+            const profileCollection = collection(db, "profile");
+            const q = query(profileCollection, where("name", "==", name));
+            const querySnapshot = await getDocs(q);
+            if (!querySnapshot.empty) {
+                const doc = querySnapshot.docs[0];
+                const data = doc.data();
+                // 데이터를 폼에 채워넣기
+                $('#name').val(data.name);
+                $('#age').val(data.age);
+                $('#mbti').val(data.mbti);
+                $('#oneWord').val(data.oneWord);
+                $('#hobby').val(data.hobby);
+                $('#selfIntro').val(data.selfIntro);
+                $('#image').val(data.image);
+                $('#photoPlaceholder').css({
+                    'background-image': 'url(' + data.image + ')',
+                    'background-size': 'cover',
+                    'background-position': 'center'
+                });
+            } else {
+                alert("해당 프로필을 찾을 수 없습니다.");
+            }
+        }
+
+        // 수정된 프로필 데이터를 Firestore에 업데이트하는 함수
+        async function updateProfileData(name) {
+            const profileCollection = collection(db, "profile");
+            const q = query(profileCollection, where("name", "==", name));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                const docRef = doc(db, "profile", querySnapshot.docs[0].id);
+                const updatedData = {
+                    name: $('#name').val(),
+                    age: $('#age').val(),
+                    mbti: $('#mbti').val(),
+                    oneWord: $('#oneWord').val(),
+                    hobby: $('#hobby').val(),
+                    selfIntro: $('#selfIntro').val(),
+                    image: $('#image').val()
+                };
+
+                await updateDoc(docRef, updatedData);
+                alert("프로필이 성공적으로 수정되었습니다.");
+                window.location.href = "mainpage.html"; // 수정 완료 후 메인페이지로 이동
+            }
+        }
+
+        // 수정 버튼 클릭 시 호출
+        $(document).on("click", ".edit-btn", function () {
+            const name = $('#name').val();
+            if (name) {
+                updateProfileData(name);
+            } else {
+                alert("이름을 입력해주세요.");
+            }
+        });
+
+        // 사진 추가 버튼 클릭 시, 사진 미리보기 업데이트
+        $(document).on("click", "#addImageBtn", function () {
+            const imageUrl = $('#image').val();
+            if (imageUrl) {
+                $('#photoPlaceholder').css({
+                    'background-image': 'url(' + imageUrl + ')',
+                    'background-size': 'cover',
+                    'background-position': 'center'
+                });
+            } else {
+                alert("이미지 링크를 입력해주세요.");
+            }
+        });
+
+    </script>
 </head>
+
 <body>
     <header id="header"></header>
     <div class="container">
         <div class="form-container">
             <div class="photo-section">
                 <div class="photo-placeholder" id="photoPlaceholder"></div>
-                <input type="text" id="imageLink" placeholder="이미지 링크를 입력하세요">
+                <input type="text" id="image" placeholder="이미지 링크를 입력하세요">
                 <button type="button" id="addImageBtn">사진 추가</button>
             </div>
             <div class="form-fields">
@@ -40,7 +146,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phrase">한마디</label>
-                        <input type="text" id="phrase" name="phrase" placeholder="한마디 입력">
+                        <input type="text" id="oneWord" name="oneWord" placeholder="한마디 입력">
                     </div>
                     <div class="form-group">
                         <label for="hobby">취미</label>
@@ -48,34 +154,16 @@
                     </div>
                     <div class="form-group">
                         <label for="bio">자기소개</label>
-                        <textarea id="bio" name="bio" rows="3" placeholder="자기소개 입력"></textarea>
+                        <textarea id="selfIntro" name="selfIntro" rows="3" placeholder="자기소개 입력"></textarea>
                     </div>
                 </form>
             </div>
         </div>
         <div class="button-group">
-            <button type="button" class="cancel-btn">취소</button>
-            <button type="submit" class="edit-btn">수정</button>
+            <button type="button" class="cancel-btn" onclick="window.location.href = 'mainpage.html';">취소</button>
+            <button type="button" class="edit-btn">수정</button>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyCQTeNI8W1jAq6S3KVhyAxQ1YAVm2H77zQ",
-            authDomain: "eleven-23001.firebaseapp.com",
-            projectId: "eleven-23001",
-            storageBucket: "eleven-23001.firebasestorage.app",
-            messagingSenderId: "599100239018",
-            appId: "1:599100239018:web:8f46ece3d58fccc91af4d3",
-            measurementId: "G-3K2RRBBN1R"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-    </script>
-    <script src="script.js"></script>
 </body>
+
 </html>
